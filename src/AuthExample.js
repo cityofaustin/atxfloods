@@ -9,18 +9,7 @@ import {
 import Login from './Login';
 import fakeAuth from './services/fakeAuth';
 import PrivateRoute from './PrivateRoute';
-
-const AuthButton = withRouter(({ history }) => (
-  fakeAuth.isAuthenticated ? (
-    <p>
-      Welcome! <button onClick={() => {
-        fakeAuth.signout(() => history.push('/'))
-      }}>Sign out</button>
-    </p>
-  ) : (
-    <p>You are not logged in.</p>
-  )
-));
+import AuthButton from './AuthButton';
 
 const Public = () => <h3>Public</h3>
 const Protected = () => <h3>Protected</h3>
