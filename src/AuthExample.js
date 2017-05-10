@@ -7,20 +7,8 @@ import {
   withRouter
 } from 'react-router-dom';
 import Login from './Login';
-import fakeAuth from './services/fakeAuth'
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    fakeAuth.isAuthenticated ? (
-      <Component {...props}/>
-    ) : (
-      <Redirect to={{
-        pathname: '/login',
-        state: { from: props.location }
-      }}/>
-    )
-  )}/>
-);
+import fakeAuth from './services/fakeAuth';
+import PrivateRoute from './PrivateRoute';
 
 const AuthButton = withRouter(({ history }) => (
   fakeAuth.isAuthenticated ? (
