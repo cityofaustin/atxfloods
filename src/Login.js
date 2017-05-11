@@ -6,7 +6,7 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
-import fakeAuth from './services/fakeAuth';
+import auth from './services/awsAuth';
 
 class Login extends Component {
   state = {
@@ -14,7 +14,7 @@ class Login extends Component {
   }
 
   login = () => {
-    fakeAuth.authenticate(() => {
+    auth.authenticate(() => {
       this.setState({ redirectToReferrer: true })
     })
   }

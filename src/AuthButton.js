@@ -6,13 +6,13 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
-import fakeAuth from './services/fakeAuth'
+import auth from './services/awsAuth'
 
 const AuthButton = withRouter(({ history }) => (
-  fakeAuth.isAuthenticated ? (
+  auth.isAuthenticated ? (
     <p>
       Welcome! <button onClick={() => {
-        fakeAuth.signout(() => history.push('/'))
+        auth.signout(() => history.push('/'))
       }}>Sign out</button>
     </p>
   ) : (
