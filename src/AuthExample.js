@@ -7,7 +7,6 @@ import {
   withRouter
 } from 'react-router-dom';
 import Login from './Login';
-import fakeAuth from './services/fakeAuth';
 import PrivateRoute from './PrivateRoute';
 import AuthButton from './AuthButton';
 
