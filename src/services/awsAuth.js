@@ -1,4 +1,4 @@
-import {Config, CognitoIdentityCredentials} from "aws-sdk";
+import {Config, CognitoIdentityCredentials, CognitoIdentityServiceProvider} from "aws-sdk";
 import {
   CognitoUserPool,
   CognitoUserAttribute,
@@ -9,7 +9,7 @@ import appConfig from "./cognitoConfig";
 
 Config.region = appConfig.region;
 Config.credentials = new CognitoIdentityCredentials({
-  IdentityPoolId: appConfig.IdentityPoolId
+  IdentityPoolId: appConfig.IdentityPoolId,
 });
 
 const userPool = new CognitoUserPool({
@@ -52,6 +52,29 @@ module.exports = {
         onFailure: function(err) {
           alert(err);
         },
+    });
+  },
+
+  createUser(username, name, cb) {
+    var params = {
+      UserPoolId: appConfig.UserPoolId,
+      Username: username,
+      UserAttributes: [
+        {
+          Name: name,
+        },
+      ],
+    };
+
+    var cisp = new CognitoIdentityServiceProvider();
+    cisp.adminCreateUser(params, function(err, data) {
+      if (err) {
+        console.log(err, err.stack); // an error occurred
+      } 
+      else {
+        console.log(data);           // successful response
+        cb.call();
+      }   
     });
   },
 
