@@ -9,7 +9,7 @@ import {
 import auth from './services/awsAuth'
 
 const AuthButton = withRouter(({ history }) => (
-  auth.isAuthenticated ? (
+  auth.isAuthenticated() ? (
     <p>
       Welcome! <button onClick={() => {
         auth.signout(() => history.push('/'))
