@@ -56,7 +56,8 @@ module.exports = {
   },
 
   signout(cb) {
-    //this.isAuthenticated = false
-    setTimeout(cb, 100)
+    var cognitoUser = userPool.getCurrentUser();
+    if (cognitoUser != null) cognitoUser.signOut();
+    cb.call();
   }
 }
