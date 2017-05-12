@@ -1,4 +1,4 @@
-import {Config, CognitoIdentityCredentials, CognitoIdentityServiceProvider} from "aws-sdk";
+import AWS, {CognitoIdentityCredentials, CognitoIdentityServiceProvider} from "aws-sdk";
 import {
   CognitoUserPool,
   CognitoUserAttribute,
@@ -7,8 +7,8 @@ import {
 } from "amazon-cognito-identity-js";
 import appConfig from "./cognitoConfig";
 
-Config.region = appConfig.region;
-Config.credentials = new CognitoIdentityCredentials({
+AWS.config.region = appConfig.region;
+AWS.config.credentials = new CognitoIdentityCredentials({
   IdentityPoolId: appConfig.IdentityPoolId,
 });
 
@@ -46,6 +46,12 @@ module.exports = {
     
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
+          AWS.config.credentials = new CognitoIdentityCredentials({
+            IdentityPoolId: appConfig.IdentityPoolId,
+            Logins: {
+              'cognito-idp.${appConfig.region}.amazonaws.com/${appConfig.UserPoolId}' : result.getIdToken().getJwtToken()
+            }
+          });
           cb.call();
         },
 
@@ -66,7 +72,7 @@ module.exports = {
       ],
     };
 
-    var cisp = new CognitoIdentityServiceProvider();
+    var cisp = new CognitoIdentityServiceProvider(AWS.config);
     cisp.adminCreateUser(params, function(err, data) {
       if (err) {
         console.log(err, err.stack); // an error occurred
