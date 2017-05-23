@@ -46,11 +46,17 @@ module.exports = {
     
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
+          var loginKey = 'cognito-idp.'+appConfig.region+'.amazonaws.com/'+appConfig.UserPoolId;
+          var logins = {};
+          logins[loginKey] = result.getIdToken().getJwtToken();
+
           AWS.config.credentials = new CognitoIdentityCredentials({
             IdentityPoolId: appConfig.IdentityPoolId,
-            Logins: {
-              'cognito-idp.${appConfig.region}.amazonaws.com/${appConfig.UserPoolId}' : result.getIdToken().getJwtToken()
-            }
+            Logins: logins
+          });
+
+          AWS.config.credentials.refresh((error) => {
+            if (error) console.error(error);
           });
           cb.call();
         },
