@@ -12,23 +12,23 @@ class CreateUser extends Component {
   state = {
     redirectToReferrer: false,
     username: '',
-    name: ''
+    email: ''
   }
 
   handleUserChange(e) {
     this.setState({username: e.target.value});
   }
 
-  handleNameChange(e) {
-    this.setState({name: e.target.value});
+  handleEmailChange(e) {
+    this.setState({email: e.target.value});
   }
 
   handleSubmit(e) {
     e.preventDefault();
     var username = this.state.username.trim();
-    var name = this.state.name.trim();
+    var email = this.state.email.trim();
 
-    auth.createUser(username, name, () => {
+    auth.createUser(username, email, () => {
       this.setState({ redirectToReferrer: true })
     });
   }
@@ -52,9 +52,9 @@ class CreateUser extends Component {
                  placeholder="Username"
                  onChange={this.handleUserChange.bind(this)}/>
           <input type="text"
-                 value={this.state.name}
-                 placeholder="Name"
-                 onChange={this.handleNameChange.bind(this)}/>
+                 value={this.state.email}
+                 placeholder="Email"
+                 onChange={this.handleEmailChange.bind(this)}/>
           <input type="submit"/>
         </form>
       </div>

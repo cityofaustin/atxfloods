@@ -67,13 +67,14 @@ module.exports = {
     });
   },
 
-  createUser(username, name, cb) {
+  createUser(username, email, cb) {
     var params = {
       UserPoolId: appConfig.UserPoolId,
       Username: username,
       UserAttributes: [
         {
-          Name: name,
+          Name: 'email',
+          Value: email,
         },
       ],
     };
