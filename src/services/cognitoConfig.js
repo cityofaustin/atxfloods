@@ -1,6 +1,6 @@
 export default {
-  region: $COGNITO_REGION,
-  IdentityPoolId: $COGNITO_IDENTITY_POOL_ID,
-  UserPoolId: $COGNITO_USER_POOL_ID,
-  ClientId: $COGNITO_CLIENT_ID,
+  region: process.env.COGNITO_REGION,
+  IdentityPoolId: process.env.COGNITO_IDENTITY_POOL_ID,
+  UserPoolId: process.env.COGNITO_USER_POOL_ID,
+  ClientId: process.env.COGNITO_CLIENT_ID,
 }
