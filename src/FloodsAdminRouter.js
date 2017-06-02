@@ -7,14 +7,14 @@ import {
   withRouter
 } from 'react-router-dom';
 import Login from './Login';
+import Public from './Public';
 import PrivateRoute from './PrivateRoute';
 import AuthButton from './AuthButton';
 import CreateUser from './CreateUser';
 
-const Public = () => <h3>Public</h3>
 const Protected = () => <h3>Protected</h3>
 
-class AuthExample extends Component {
+class FloodsAdminRouter extends Component {
   render() {
     return (
       <Router>
@@ -35,4 +35,4 @@ class AuthExample extends Component {
   }
 }
 
-export default AuthExample;
+export default FloodsAdminRouter;
