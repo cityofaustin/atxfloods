@@ -3,8 +3,6 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Redirect,
-  withRouter
 } from 'react-router-dom';
 import Login from './Login';
 import Public from './Public';
