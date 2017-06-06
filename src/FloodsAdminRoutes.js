@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
   Route,
   Link,
 } from 'react-router-dom';
@@ -13,10 +12,11 @@ import auth from './services/awsAuth';
 
 const Protected = () => <h3>Protected</h3>
 
-class FloodsAdminRouter extends Component {
+class FloodsAdminRoutes extends Component {
   render() {
+    console.log(auth.isAuthenticated());
+
     return (
-      <Router>
         <div>
           <AuthButton/>
           <ul>
@@ -26,12 +26,11 @@ class FloodsAdminRouter extends Component {
           </ul>
           <Route path="/public" component={Public}/>
           <Route path="/login" component={Login}/>
-          <PrivateRoute path="/protected" component={Protected} authenticated={true}/>
-          <PrivateRoute path="/createuser" component={CreateUser} authenticated={true}/>
+          <PrivateRoute path="/protected" component={Protected} authenticated={auth.isAuthenticated()}/>
+          <PrivateRoute path="/createuser" component={CreateUser} authenticated={auth.isAuthenticated()}/>
         </div>
-      </Router>
     );
   }
 }
 
-export default FloodsAdminRouter;
+export default FloodsAdminRoutes;

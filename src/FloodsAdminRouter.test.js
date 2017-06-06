@@ -1,47 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route } from 'react-router';
-// import { mount } from 'enzyme';
-// import ReactTestUtils from 'react-dom/test-utils';
+import { Route, MemoryRouter } from 'react-router';
 import renderer from 'react-test-renderer';
-import FloodsAdminRouter from './FloodsAdminRouter';
+import FloodsAdminRoutes from './FloodsAdminRoutes';
 import Public from './Public';
+import auth from './services/awsAuth';
 
-it('renders routes', () => {
-  // const wrapper = mount(<FloodsAdminRouter />);
-  // console.log(wrapper.html());
-  // const tree = ReactTestUtils.renderIntoDocument(<FloodsAdminRouter />);
-  // // console.log(tree);
-  // const routes = ReactTestUtils.scryRenderedComponentsWithType(tree, Route);
-  // // console.log(routes);
-  // routes.forEach(function(route) {
-  //   console.log("yip");
-  //   console.log(toJson(route.props);
-  //   console.log(route.props.render ? route.props.render.toString() : null)
-  // });
+jest.mock('./services/awsAuth', () => {
+  return {
+    isAuthenticated: jest.fn()
+  }
+});
 
-  const tree = renderer.create(<FloodsAdminRouter />).toJSON();
+it('renders the root page correctly when the user is logged out', () => {
+  console.log(auth.isAuthenticated);
+  auth.isAuthenticated.mockReturnValueOnce(false);
+
+  const tree = renderer.create(
+    <MemoryRouter initialEntries={[ '/' ]}>
+      <FloodsAdminRoutes />
+    </MemoryRouter>
+  ).toJSON();
+
   expect(tree).toMatchSnapshot();
-  // console.log(component.toJSON().children);
-  // console.log(component.toJSON());
+});
 
-  // const pathMap = ReactTestUtils.scryRenderedComponentsWithType(tree, Route).reduce((blarg) => {
-  //   // const routeProps = route.props();
-  //   // pathMap[routeProps.path] = routeProps.component;
-  //   console.log("yip");
-  //   console.log(blarg);
-  //   return blarg;
-  // }, {});
+it('renders the root page correctly when the user is logged in', () => {
+  auth.isAuthenticated.mockReturnValueOnce(true);
 
-  // const pathMap = wrapper.find(Route).reduce((pathMap, route) => {
-  //   const routeProps = route.props();
-  //   pathMap[routeProps.path] = routeProps.component;
-  //   return pathMap;
-  // }, {});
+  const tree = renderer.create(
+    <MemoryRouter initialEntries={[ '/' ]}>
+      <FloodsAdminRoutes />
+    </MemoryRouter>
+  ).toJSON();
 
-  // console.log(pathMap);
-  // var blarg = pathMap['/protected'];
-  // console.log(blarg);
-
-  // expect(pathMap['/public']).toBe(Public);
+  expect(tree).toMatchSnapshot();
 });
