@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
   Route,
-  Link,
-  Redirect,
-  withRouter
+  Redirect
 } from 'react-router-dom';
 
 class PrivateRoute extends Component {
   render() {
-    const { component: Component, authenticated: authenticated, ...rest } = this.props;
+    const { component: Component, authenticated, ...rest } = this.props;
 
     return (
       <Route {...rest} render={props => (
