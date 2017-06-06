@@ -14,8 +14,6 @@ const Protected = () => <h3>Protected</h3>
 
 class FloodsAdminRoutes extends Component {
   render() {
-    console.log(auth.isAuthenticated());
-
     return (
         <div>
           <AuthButton/>
