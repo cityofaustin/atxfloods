@@ -1,4 +1,4 @@
-exports[`test should render the create user page correctly when the user is logged in 1`] = `
+exports[`when the user is logged in should render the create user page correctly 1`] = `
 <div>
   <p>
     Welcome! 
@@ -53,7 +53,118 @@ exports[`test should render the create user page correctly when the user is logg
 </div>
 `;
 
-exports[`test should render the create user page correctly when the user is logged out 1`] = `
+exports[`when the user is logged in should render the protected page correctly 1`] = `
+<div>
+  <p>
+    Welcome! 
+    <button
+      onClick={[Function]}>
+      Sign out
+    </button>
+  </p>
+  <ul>
+    <li>
+      <a
+        href="/public"
+        onClick={[Function]}>
+        Public Page
+      </a>
+    </li>
+    <li>
+      <a
+        href="/protected"
+        onClick={[Function]}>
+        Protected Page
+      </a>
+    </li>
+    <li>
+      <a
+        href="/createuser"
+        onClick={[Function]}>
+        Create User
+      </a>
+    </li>
+  </ul>
+  <h3>
+    Protected
+  </h3>
+</div>
+`;
+
+exports[`when the user is logged in should render the public page correctly 1`] = `
+<div>
+  <p>
+    Welcome! 
+    <button
+      onClick={[Function]}>
+      Sign out
+    </button>
+  </p>
+  <ul>
+    <li>
+      <a
+        href="/public"
+        onClick={[Function]}>
+        Public Page
+      </a>
+    </li>
+    <li>
+      <a
+        href="/protected"
+        onClick={[Function]}>
+        Protected Page
+      </a>
+    </li>
+    <li>
+      <a
+        href="/createuser"
+        onClick={[Function]}>
+        Create User
+      </a>
+    </li>
+  </ul>
+  <h3>
+    Public
+  </h3>
+</div>
+`;
+
+exports[`when the user is logged in should render the root page correctly 1`] = `
+<div>
+  <p>
+    Welcome! 
+    <button
+      onClick={[Function]}>
+      Sign out
+    </button>
+  </p>
+  <ul>
+    <li>
+      <a
+        href="/public"
+        onClick={[Function]}>
+        Public Page
+      </a>
+    </li>
+    <li>
+      <a
+        href="/protected"
+        onClick={[Function]}>
+        Protected Page
+      </a>
+    </li>
+    <li>
+      <a
+        href="/createuser"
+        onClick={[Function]}>
+        Create User
+      </a>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`when the user is logged out should render the create user page correctly 1`] = `
 <div>
   <p>
     You are not logged in.
@@ -105,45 +216,7 @@ exports[`test should render the create user page correctly when the user is logg
 </div>
 `;
 
-exports[`test should render the protected page correctly when the user is logged in 1`] = `
-<div>
-  <p>
-    Welcome! 
-    <button
-      onClick={[Function]}>
-      Sign out
-    </button>
-  </p>
-  <ul>
-    <li>
-      <a
-        href="/public"
-        onClick={[Function]}>
-        Public Page
-      </a>
-    </li>
-    <li>
-      <a
-        href="/protected"
-        onClick={[Function]}>
-        Protected Page
-      </a>
-    </li>
-    <li>
-      <a
-        href="/createuser"
-        onClick={[Function]}>
-        Create User
-      </a>
-    </li>
-  </ul>
-  <h3>
-    Protected
-  </h3>
-</div>
-`;
-
-exports[`test should render the protected page correctly when the user is logged out 1`] = `
+exports[`when the user is logged out should render the protected page correctly 1`] = `
 <div>
   <p>
     You are not logged in.
@@ -195,45 +268,7 @@ exports[`test should render the protected page correctly when the user is logged
 </div>
 `;
 
-exports[`test should render the public page correctly when the user is logged in 1`] = `
-<div>
-  <p>
-    Welcome! 
-    <button
-      onClick={[Function]}>
-      Sign out
-    </button>
-  </p>
-  <ul>
-    <li>
-      <a
-        href="/public"
-        onClick={[Function]}>
-        Public Page
-      </a>
-    </li>
-    <li>
-      <a
-        href="/protected"
-        onClick={[Function]}>
-        Protected Page
-      </a>
-    </li>
-    <li>
-      <a
-        href="/createuser"
-        onClick={[Function]}>
-        Create User
-      </a>
-    </li>
-  </ul>
-  <h3>
-    Public
-  </h3>
-</div>
-`;
-
-exports[`test should render the public page correctly when the user is logged out 1`] = `
+exports[`when the user is logged out should render the public page correctly 1`] = `
 <div>
   <p>
     You are not logged in.
@@ -267,42 +302,7 @@ exports[`test should render the public page correctly when the user is logged ou
 </div>
 `;
 
-exports[`test should render the root page correctly when the user is logged in 1`] = `
-<div>
-  <p>
-    Welcome! 
-    <button
-      onClick={[Function]}>
-      Sign out
-    </button>
-  </p>
-  <ul>
-    <li>
-      <a
-        href="/public"
-        onClick={[Function]}>
-        Public Page
-      </a>
-    </li>
-    <li>
-      <a
-        href="/protected"
-        onClick={[Function]}>
-        Protected Page
-      </a>
-    </li>
-    <li>
-      <a
-        href="/createuser"
-        onClick={[Function]}>
-        Create User
-      </a>
-    </li>
-  </ul>
-</div>
-`;
-
-exports[`test should render the root page correctly when the user is logged out 1`] = `
+exports[`when the user is logged out should render the root page correctly 1`] = `
 <div>
   <p>
     You are not logged in.

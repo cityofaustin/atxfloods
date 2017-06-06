@@ -12,98 +12,100 @@ jest.mock('./services/awsAuth', () => {
   }
 });
 
-it('should render the root page correctly when the user is logged out', () => {
-  auth.isAuthenticated.mockReturnValue(false);
+describe('when the user is logged in', () => {
+  beforeAll(() => {
+    auth.isAuthenticated.mockReturnValue(true);
+  });
+  
+  it('should render the root page correctly', () => {
+    const tree = renderer.create(
+      <MemoryRouter initialEntries={[ '/' ]}>
+        <FloodsAdminRoutes />
+      </MemoryRouter>
+    ).toJSON();
 
-  const tree = renderer.create(
-    <MemoryRouter initialEntries={[ '/' ]}>
-      <FloodsAdminRoutes />
-    </MemoryRouter>
-  ).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 
-  expect(tree).toMatchSnapshot();
+  it('should render the public page correctly', () => {
+    const tree = renderer.create(
+      <MemoryRouter initialEntries={[ '/public' ]}>
+        <FloodsAdminRoutes />
+      </MemoryRouter>
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('should render the protected page correctly', () => {
+   const tree = renderer.create(
+      <MemoryRouter initialEntries={[ '/protected' ]}>
+        <FloodsAdminRoutes />
+      </MemoryRouter>
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('should render the create user page correctly', () => {
+   const tree = renderer.create(
+      <MemoryRouter initialEntries={[ '/createuser' ]}>
+        <FloodsAdminRoutes />
+      </MemoryRouter>
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
 });
 
-it('should render the root page correctly when the user is logged in', () => {
-  auth.isAuthenticated.mockReturnValue(true);
+describe('when the user is logged out', () => {
+  beforeAll(() => {
+    auth.isAuthenticated.mockReturnValue(false);
+  });
 
-  const tree = renderer.create(
-    <MemoryRouter initialEntries={[ '/' ]}>
-      <FloodsAdminRoutes />
-    </MemoryRouter>
-  ).toJSON();
+  it('should render the root page correctly', () => {
+    const tree = renderer.create(
+      <MemoryRouter initialEntries={[ '/' ]}>
+        <FloodsAdminRoutes />
+      </MemoryRouter>
+    ).toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('should render the public page correctly', () => {
+    const tree = renderer.create(
+      <MemoryRouter initialEntries={[ '/public' ]}>
+        <FloodsAdminRoutes />
+      </MemoryRouter>
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('should render the protected page correctly', () => {
+    const tree = renderer.create(
+      <MemoryRouter initialEntries={[ '/protected' ]}>
+        <FloodsAdminRoutes />
+      </MemoryRouter>
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('should render the create user page correctly', () => {
+    const tree = renderer.create(
+      <MemoryRouter initialEntries={[ '/createuser' ]}>
+        <FloodsAdminRoutes />
+      </MemoryRouter>
+    ).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
 });
 
-it('should render the public page correctly when the user is logged out', () => {
-  auth.isAuthenticated.mockReturnValue(false);
 
-  const tree = renderer.create(
-    <MemoryRouter initialEntries={[ '/public' ]}>
-      <FloodsAdminRoutes />
-    </MemoryRouter>
-  ).toJSON();
 
-  expect(tree).toMatchSnapshot();
-});
 
-it('should render the public page correctly when the user is logged in', () => {
-  auth.isAuthenticated.mockReturnValue(true);
-
-  const tree = renderer.create(
-    <MemoryRouter initialEntries={[ '/public' ]}>
-      <FloodsAdminRoutes />
-    </MemoryRouter>
-  ).toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
-
-it('should render the protected page correctly when the user is logged out', () => {
-  auth.isAuthenticated.mockReturnValue(false);
-
-  const tree = renderer.create(
-    <MemoryRouter initialEntries={[ '/protected' ]}>
-      <FloodsAdminRoutes />
-    </MemoryRouter>
-  ).toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
-
-it('should render the protected page correctly when the user is logged in', () => {
-  auth.isAuthenticated.mockReturnValue(true);
-
-  const tree = renderer.create(
-    <MemoryRouter initialEntries={[ '/protected' ]}>
-      <FloodsAdminRoutes />
-    </MemoryRouter>
-  ).toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
-
-it('should render the create user page correctly when the user is logged out', () => {
-  auth.isAuthenticated.mockReturnValue(false);
-
-  const tree = renderer.create(
-    <MemoryRouter initialEntries={[ '/createuser' ]}>
-      <FloodsAdminRoutes />
-    </MemoryRouter>
-  ).toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
-
-it('should render the create user page correctly when the user is logged in', () => {
-  auth.isAuthenticated.mockReturnValue(true);
-
-  const tree = renderer.create(
-    <MemoryRouter initialEntries={[ '/createuser' ]}>
-      <FloodsAdminRoutes />
-    </MemoryRouter>
-  ).toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
