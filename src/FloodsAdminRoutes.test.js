@@ -103,7 +103,3 @@ describe('when the user is logged out', () => {
   });
 
 });
-
-
-
-
