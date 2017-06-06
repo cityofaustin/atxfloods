@@ -7,6 +7,7 @@ import Protected from './Protected';
 
 it('renders routes', () => {
   const wrapper = mount(<Router><PrivateRoute path="/protected" component={Protected}/></Router>);
+  console.log(wrapper);
 
   const pathMap = wrapper.find(Route).reduce((pathMap, route) => {
     const routeProps = route.props();

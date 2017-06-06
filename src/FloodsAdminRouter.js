@@ -9,6 +9,7 @@ import Public from './Public';
 import PrivateRoute from './PrivateRoute';
 import AuthButton from './AuthButton';
 import CreateUser from './CreateUser';
+import auth from './services/awsAuth';
 
 const Protected = () => <h3>Protected</h3>
 
@@ -25,8 +26,8 @@ class FloodsAdminRouter extends Component {
           </ul>
           <Route path="/public" component={Public}/>
           <Route path="/login" component={Login}/>
-          <PrivateRoute path="/protected" component={Protected}/>
-          <PrivateRoute path="/createuser" component={CreateUser}/>
+          <PrivateRoute path="/protected" component={Protected} authenticated={auth.isAuthenticated()}/>
+          <PrivateRoute path="/createuser" component={CreateUser} authenticated={auth.isAuthenticated()}/>
         </div>
       </Router>
     );

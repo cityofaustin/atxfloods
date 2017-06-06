@@ -6,19 +6,47 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
-import auth from './services/awsAuth'
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    auth.isAuthenticated() ? (
-      <Component {...props}/>
-    ) : (
-      <Redirect to={{
-        pathname: '/login',
-        state: { from: props.location }
-      }}/>
-    )
-  )}/>
-);
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//   <Route {...rest} render={props => (
+//     false ? (
+//       <Component {...props}/>
+//     ) : (
+//       <Redirect to={{
+//         pathname: '/login',
+//         state: { from: props.location }
+//       }}/>
+//     )
+//   )}/>
+// );
+
+class PrivateRoute extends Component {
+  render() {
+    const { component: Component, authenticated: authenticated, ...rest } = this.props;
+    console.log("PrivateRoute");
+    console.log("")
+    return (
+      <Route {...rest} render={props => (
+        authenticated ? (
+          <Component {...props}/>
+        ) : (
+          <Redirect to={{
+            pathname: '/login',
+            state: { from: props.location }
+          }}/>
+        )
+      )}/>
+    );
+  }
+}
+
+
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//   <Route {...rest} render={props => (
+//     (
+//       <Component {...props}/>
+//     ) 
+//   )}/>
+// );
 
 export default PrivateRoute;
