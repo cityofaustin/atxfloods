@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
-import AuthExample from './AuthExample';
+import FloodsAdminRoutes from './FloodsAdminRoutes';
 
 class App extends Component {
   render() {
     return (
-      <AuthExample />
+        <Router>
+          <FloodsAdminRoutes />
+        </Router>
     );
   }
 }
