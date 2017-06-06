@@ -1,7 +1,6 @@
 import AWS, {CognitoIdentityCredentials, CognitoIdentityServiceProvider} from "aws-sdk";
 import {
   CognitoUserPool,
-  CognitoUserAttribute,
   AuthenticationDetails,
   CognitoUser,
 } from "amazon-cognito-identity-js";
