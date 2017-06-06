@@ -7,24 +7,10 @@ import {
   withRouter
 } from 'react-router-dom';
 
-// const PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route {...rest} render={props => (
-//     false ? (
-//       <Component {...props}/>
-//     ) : (
-//       <Redirect to={{
-//         pathname: '/login',
-//         state: { from: props.location }
-//       }}/>
-//     )
-//   )}/>
-// );
-
 class PrivateRoute extends Component {
   render() {
     const { component: Component, authenticated: authenticated, ...rest } = this.props;
-    console.log("PrivateRoute");
-    console.log("")
+
     return (
       <Route {...rest} render={props => (
         authenticated ? (
@@ -39,14 +25,5 @@ class PrivateRoute extends Component {
     );
   }
 }
-
-
-// const PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route {...rest} render={props => (
-//     (
-//       <Component {...props}/>
-//     ) 
-//   )}/>
-// );
 
 export default PrivateRoute;
