@@ -26,8 +26,8 @@ class FloodsAdminRouter extends Component {
           </ul>
           <Route path="/public" component={Public}/>
           <Route path="/login" component={Login}/>
-          <PrivateRoute path="/protected" component={Protected} authenticated={auth.isAuthenticated()}/>
-          <PrivateRoute path="/createuser" component={CreateUser} authenticated={auth.isAuthenticated()}/>
+          <PrivateRoute path="/protected" component={Protected} authenticated={true}/>
+          <PrivateRoute path="/createuser" component={CreateUser} authenticated={true}/>
         </div>
       </Router>
     );

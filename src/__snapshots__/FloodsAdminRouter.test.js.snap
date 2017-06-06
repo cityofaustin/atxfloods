@@ -1,0 +1,30 @@
+exports[`test renders routes 1`] = `
+<div>
+  <p>
+    You are not logged in.
+  </p>
+  <ul>
+    <li>
+      <a
+        href="/public"
+        onClick={[Function]}>
+        Public Page
+      </a>
+    </li>
+    <li>
+      <a
+        href="/protected"
+        onClick={[Function]}>
+        Protected Page
+      </a>
+    </li>
+    <li>
+      <a
+        href="/createuser"
+        onClick={[Function]}>
+        Create User
+      </a>
+    </li>
+  </ul>
+</div>
+`;
