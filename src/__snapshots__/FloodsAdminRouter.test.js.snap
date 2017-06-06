@@ -1,7 +1,11 @@
 exports[`test renders the root page correctly when the user is logged in 1`] = `
 <div>
   <p>
-    You are not logged in.
+    Welcome! 
+    <button
+      onClick={[Function]}>
+      Sign out
+    </button>
   </p>
   <ul>
     <li>

@@ -14,7 +14,7 @@ jest.mock('./services/awsAuth', () => {
 
 it('renders the root page correctly when the user is logged out', () => {
   console.log(auth.isAuthenticated);
-  auth.isAuthenticated.mockReturnValueOnce(false);
+  auth.isAuthenticated.mockReturnValue(false);
 
   const tree = renderer.create(
     <MemoryRouter initialEntries={[ '/' ]}>
@@ -26,7 +26,7 @@ it('renders the root page correctly when the user is logged out', () => {
 });
 
 it('renders the root page correctly when the user is logged in', () => {
-  auth.isAuthenticated.mockReturnValueOnce(true);
+  auth.isAuthenticated.mockReturnValue(true);
 
   const tree = renderer.create(
     <MemoryRouter initialEntries={[ '/' ]}>
