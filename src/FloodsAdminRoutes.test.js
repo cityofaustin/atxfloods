@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Route, MemoryRouter } from 'react-router';
+import { MemoryRouter } from 'react-router';
 import renderer from 'react-test-renderer';
 import FloodsAdminRoutes from './FloodsAdminRoutes';
-import Public from './Public';
 import auth from './services/awsAuth';
 
 jest.mock('./services/awsAuth', () => {
