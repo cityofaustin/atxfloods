@@ -32,8 +32,8 @@ class NewStatusUpdate extends Component {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
         <select name="select-crossing" value={this.state.crossingId} onChange={this.handleCrossingChange.bind(this)}>
-          {this.props.data.loading ? null : this.props.data.allCrossings.edges.map((crossing) =>
-            <option key={crossing.node.id} value={crossing.node.id}>{crossing.node.name}</option>
+          {this.props.data.loading ? null : this.props.data.allCrossings.nodes.map((crossing) =>
+            <option key={crossing.id} value={crossing.id}>{crossing.name}</option>
           )}
         </select>
         <select name="select-status" value={this.state.statusId} onChange={this.handleStatusChange.bind(this)}>
@@ -66,11 +66,9 @@ const createStatusUpdate = gql`
 const getDropdownData = gql`
   {
     allCrossings {
-      edges {
-        node {
-          id
-          name
-        }
+      nodes {
+        id
+        name
       }
     }
     allStatuses {

@@ -18,10 +18,10 @@ class CrossingList extends React.Component {
     return (
       <div className='w-100 flex justify-center'>
         <div className='w-100' style={{ maxWidth: 400 }}>
-          {this.props.data.allCrossings.edges.map((crossing) =>
+          {this.props.data.allCrossings.nodes.map((crossing) =>
             <Crossing 
-              key={crossing.node.id}
-              crossing={crossing.node}
+              key={crossing.id}
+              crossing={crossing}
               refresh={() => this.props.data.refetch()}
             />
           )}
@@ -35,19 +35,17 @@ class CrossingList extends React.Component {
 const allCrossings = gql`
   query allCrossings {
     allCrossings {
-      edges {
-        node {
-          id
-          name
-          latestStatus {
-            statusByStatusId {
-              name
-            }
-            personByAuthorId {
-              id
-              firstName
-              lastName
-            }
+      nodes {
+        id
+        name
+        latestStatus {
+          statusByStatusId {
+            name
+          }
+          personByAuthorId {
+            id
+            firstName
+            lastName
           }
         }
       }
