@@ -25,13 +25,13 @@ class Login extends Component {
     this.props.mutate({
       variables: { email: email, password: password }
     })
-      .then(({ data }) => {
-        console.log('got data', data);
-        localStorage.setItem('jwt_user_token', data.authenticate.jwtToken);
-        this.setState({ redirectToReferrer: true })
-      }).catch((error) => {
-        console.log('there was an error sending the query', error);
-      });
+    .then(({ data }) => {
+      console.log('got data', data);
+      localStorage.setItem('jwt_user_token', data.authenticate.jwtToken);
+      this.setState({ redirectToReferrer: true })
+    }).catch((error) => {
+      console.log('there was an error sending the query', error);
+    });
   }
 
   render() {
@@ -72,5 +72,3 @@ const logInUser = gql `
 `;
 
 export default graphql(logInUser)(Login);
-
-// export default Login;
