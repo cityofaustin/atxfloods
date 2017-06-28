@@ -4,8 +4,11 @@
   "private": true,
   "dependencies": {
     "amazon-cognito-identity-js": "^1.16.0",
+    "apollo-client": "^1.6.0",
     "aws-sdk": "^2.49.0",
+    "jwt-decode": "^2.2.0",
     "react": "^15.5.4",
+    "react-apollo": "^1.4.2",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1",
     "react-test-renderer": "^15.5.4"

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import auth from './services/awsAuth';
+import { gql, graphql } from 'react-apollo';
 
 class Login extends Component {
   state = {
     redirectToReferrer: false,
-    username: '',
+    email: '',
     password: ''
   }
 
-  handleUserChange(e) {
-    this.setState({username: e.target.value});
+  handleEmailChange(e) {
+    this.setState({email: e.target.value});
   }
 
   handlePasswordChange(e) {
@@ -19,12 +19,19 @@ class Login extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    var username = this.state.username.trim();
+    var email = this.state.email.trim();
     var password = this.state.password.trim();
 
-    auth.authenticate(username, password, () => {
-      this.setState({ redirectToReferrer: true })
-    });
+    this.props.mutate({
+      variables: { email: email, password: password }
+    })
+      .then(({ data }) => {
+        console.log('got data', data);
+        localStorage.setItem('jwt_user_token', data.authenticate.jwtToken);
+        this.setState({ redirectToReferrer: true })
+      }).catch((error) => {
+        console.log('there was an error sending the query', error);
+      });
   }
 
   render() {
@@ -42,9 +49,9 @@ class Login extends Component {
         <p>You must log in to view the page at {from.pathname}</p>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <input type="text"
-                 value={this.state.username}
-                 placeholder="Username"
-                 onChange={this.handleUserChange.bind(this)}/>
+                 value={this.state.email}
+                 placeholder="Email"
+                 onChange={this.handleEmailChange.bind(this)}/>
           <input type="password"
                  value={this.state.password}
                  placeholder="Password"
@@ -56,4 +63,14 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const logInUser = gql `
+  mutation($email: String!, $password: String!) {
+    authenticate(input: {email: $email, password: $password}) {
+      jwtToken
+    }
+  }
+`;
+
+export default graphql(logInUser)(Login);
+
+// export default Login;

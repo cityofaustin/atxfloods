@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import auth from './services/awsAuth'
+import auth from './services/gqlAuth'
 
 const AuthButton = withRouter(({ history }) => (
   auth.isAuthenticated() ? (

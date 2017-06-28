@@ -2,9 +2,9 @@ import React from 'react';
 import { MemoryRouter } from 'react-router';
 import renderer from 'react-test-renderer';
 import FloodsAdminRoutes from './FloodsAdminRoutes';
-import auth from './services/awsAuth';
+import auth from './services/gqlAuth';
 
-jest.mock('./services/awsAuth', () => {
+jest.mock('./services/gqlAuth', () => {
   return {
     isAuthenticated: jest.fn()
   }

@@ -8,9 +8,11 @@ import Public from './Public';
 import PrivateRoute from './PrivateRoute';
 import AuthButton from './AuthButton';
 import CreateUser from './CreateUser';
-import auth from './services/awsAuth';
+import auth from './services/gqlAuth';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import { ApolloProvider } from 'react-apollo';
 
-const Protected = () => <h3>Protected</h3>
+const Protected = () => <h3>Protected</h3>;
 
 class FloodsAdminRoutes extends Component {
   render() {

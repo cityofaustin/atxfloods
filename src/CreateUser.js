@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import auth from './services/awsAuth';
+import auth from './services/gqlAuth';
 
 class CreateUser extends Component {
   state = {
